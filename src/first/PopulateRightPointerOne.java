@@ -32,6 +32,9 @@ public class PopulateRightPointerOne {
 	        }
 	 }
 	 
+	 /*
+	  * This is for populating next right pointers in each node 2
+	  */
 	 public void connectGeneral(TreeLinkNode root){
 		 LinkedList<TreeLinkNode> queue = new LinkedList<TreeLinkNode>();
 	        if(root==null) return;

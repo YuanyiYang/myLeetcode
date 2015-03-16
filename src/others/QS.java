@@ -1,4 +1,4 @@
-package first;
+package others;
 
 public class QS {
 

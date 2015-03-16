@@ -1,4 +1,4 @@
-package first;
+package others;
 /**
  * This program shows that Java is a static scoping language. The non-local variable y in procedure
  * mostInner is actually declared in the outer scope of the definition, the class. Not in the 

@@ -1,47 +1,38 @@
 package first;
 
+/*
+ *  For example,
+ *  a = "11"
+ *  b = "1"
+ *  Return "100".
+ *  One Pass.
+ */
 public class AddBinary {
 
-  public String addBinary(String a, String b) {
-    if (a == null || b == null) {
+  public String revised(String a, String b) {
+    if (a == null || b == null)
       return a == null ? b : a;
-    }
-    if (a.length() == 0 || b.length() == 0) {
+    if (a.length() == 0 || b.length() == 0)
       return a.length() == 0 ? b : a;
-    }
-    StringBuilder resultBuilder = new StringBuilder();
-    int resultLength = Math.max(a.length(), b.length()) + 1;
-    int[] result = new int[resultLength];
-    int[] strA = new int[a.length()];
-    int[] strB = new int[b.length()];
-    reverseString(a, strA);
-    reverseString(b, strB);
+    int al = a.length() - 1;
+    int bl = b.length() - 1;
+    StringBuilder sb = new StringBuilder();
     int carry = 0;
-    for (int i = 0; i < result.length; i++) {
-      if (i < strA.length) {
-        result[i] += strA[i];
+    while (al >= 0 || bl >= 0 || carry > 0) {
+      int ai = 0;
+      int bi = 0;
+      if (al >= 0) {
+        ai = a.charAt(al) - '0';
+        al--;
       }
-      if (i < strB.length) {
-        result[i] += strB[i];
+      if (bl >= 0) {
+        bi = b.charAt(bl) - '0';
+        bl--;
       }
-      result[i] += carry;
-      if (result[i] >= 2) {
-        carry = 1;
-      } else {
-        carry = 0;
-      }
-      result[i] %= 2;
-      if (i == result.length - 1 && result[i] == 0)
-        break;
-      resultBuilder.append(result[i]);
+      int v = carry + ai + bi;
+      sb.insert(0, v % 2); // 注意这里第一个参数是index
+      carry = v / 2;
     }
-    return resultBuilder.reverse().toString();
-  }
-
-  private void reverseString(String str, int[] result) {
-    for (int i = 0; i < str.length(); i++) {
-      char ch = str.charAt(i);
-      result[result.length - 1 - i] = ch - '0';
-    }
+    return sb.toString();
   }
 }
